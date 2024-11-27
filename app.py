@@ -75,6 +75,7 @@ with st.container():
             caption="Debugging: The Ultimate Puzzle",
         )
     with text_column:
+        st.subheader("Programming us fun!!!")
         st.write(
             """
             Programming assignments are thrilling and sometimes challenging. 
