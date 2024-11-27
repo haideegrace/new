@@ -2,6 +2,7 @@ from PIL import Image
 import requests
 import streamlit as st
 from streamlit_lottie import st_lottie
+import os
 
 # Load Lottie animation from URL
 def load_lottieurl(url):
@@ -15,11 +16,11 @@ st.set_page_config(page_title="Programming is Fun", page_icon="💻", layout="wi
 
 # Load local CSS
 def local_css(file_name):
-    try:
+    if os.path.exists(file_name):
         with open(file_name) as f:
             st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
-    except FileNotFoundError:
-        st.error("CSS file not found. Make sure the path is correct.")
+    else:
+        st.warning("CSS file not found. Skipping custom styles.")
 
 local_css("style/style.css")
 
@@ -28,10 +29,10 @@ lottie_coding = load_lottieurl("https://assets5.lottiefiles.com/packages/lf20_fc
 
 # Load images
 try:
-    img_contact_form = Image.open("image/nn.jpg")
-    img_github = Image.open("images/nn.jpg")
+    img_contact_form = Image.open("images/nn.jpg")
+    img_github = Image.open("images/nn.jpg")  # Ensure the file paths are correct
 except FileNotFoundError:
-    st.error("Image file not found. Make sure the paths are correct.")
+    st.warning("One or more image files could not be found. Ensure the paths are correct.")
 
 # Header section
 with st.container():
@@ -63,14 +64,17 @@ with st.container():
         if lottie_coding:
             st_lottie(lottie_coding, height=300, key="coding")
         else:
-            st.error("Lottie animation could not load.")
+            st.warning("Lottie animation could not load. Check the URL or your internet connection.")
 
 # Insights and reflections
 with st.container():
     st.write("---")
     image_column, text_column = st.columns((1, 2))
     with image_column:
-        st.image("//www.facebook.com/photo.php?fbid=1473158576597106&set=pb.100017089338638.-2207520000&type=3", caption="Debugging: The Ultimate Puzzle")
+        st.image(
+            "https://www.facebook.com/photo.php?fbid=1473158576597106&set=pb.100017089338638.-2207520000&type=3",
+            caption="Debugging: The Ultimate Puzzle",
+        )
     with text_column:
         st.write(
             """
@@ -110,7 +114,7 @@ with st.container():
     st.write("##")
     
     contact_form = """
-    <form action="https://formspree.io/f/{your-form-id}" method="POST">
+    <form action="https://formspree.io/f/abcd1234" method="POST">
         <input type="hidden" name="_captcha" value="false">
         <input type="text" name="name" placeholder="Your name" required>
         <input type="email" name="email" placeholder="Your email" required>
@@ -123,3 +127,4 @@ with st.container():
         st.markdown(contact_form, unsafe_allow_html=True)
     with right_column:
         st.empty()
+
