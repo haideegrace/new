@@ -71,7 +71,7 @@ with st.container():
     st.write("---")
     image_column, text_column = st.columns((1, 2))
     with image_column:
-        st.image("https://1drv.ms/i/s!AiPOicta2pldhQAm93LO2nbqetbk?e=CjGJGf",
+        st.image("Screenshot 2024-11-27 102027 - Copy.png",
             caption="Debugging: The Ultimate Puzzle",
         )
     with text_column:
