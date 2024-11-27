@@ -71,8 +71,7 @@ with st.container():
     st.write("---")
     image_column, text_column = st.columns((1, 2))
     with image_column:
-        st.image(
-            "https://www.facebook.com/photo.php?fbid=1473158576597106&set=pb.100017089338638.-2207520000&type=3",
+        st.image("https://www.facebook.com/photo.php?fbid=1473158576597106&set=pb.100017089338638.-2207520000&type=3",
             caption="Debugging: The Ultimate Puzzle",
         )
     with text_column:
